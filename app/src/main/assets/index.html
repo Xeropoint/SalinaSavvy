@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1320">
+<title>Salina HM Training</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">SC</div>
+    <div class="brand-text">
+      <div class="brand-title">Salina Crossroads HM</div>
+      <div class="brand-sub" id="countdown">— days to race</div>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-view="today">Today</button>
+    <button class="tab" data-view="week">Week</button>
+    <button class="tab" data-view="reference">Reference</button>
+  </nav>
+</header>
+
+<main id="view"></main>
+
+<nav class="bottom-nav" role="tablist">
+  <button class="bnav active" data-view="today" aria-label="Today">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+    <span>Today</span>
+  </button>
+  <button class="bnav" data-view="week" aria-label="Week">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+    <span>Week</span>
+  </button>
+  <button class="bnav" data-view="reference" aria-label="Reference">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 7h8M8 11h8M8 15h6"/></svg>
+    <span>Reference</span>
+  </button>
+</nav>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>

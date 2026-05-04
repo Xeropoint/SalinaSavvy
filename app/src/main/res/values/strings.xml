@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Salina HM</string>
+    <string name="widget_label">Today\'s Workout</string>
+    <string name="widget_description">Today\'s training plan, fueling target, and race countdown.</string>
+</resources>

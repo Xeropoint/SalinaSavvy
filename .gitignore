@@ -1,0 +1,28 @@
+# Built artifacts
+*.apk
+*.aab
+*.aar
+*.jar
+*.dex
+*.class
+
+# Gradle
+.gradle/
+build/
+local.properties
+gradle-app.setting
+.gradletasknamecache
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+captures/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Don't ignore the gradle wrapper
+!gradle/wrapper/gradle-wrapper.jar
