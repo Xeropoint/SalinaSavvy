@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Splash background. MUST NOT reference @mipmap/ic_launcher inside <bitmap> on
+  API 26+ — the launcher icon is an adaptive-icon XML, not a real bitmap, and
+  the runtime will crash. Solid color only.
+-->
+<color xmlns:android="http://schemas.android.com/apk/res/android"
+       android:color="#0B1320" />
