@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  4x6 home screen widget. Vertical stack:
-    1. Header strip   (phase pill | phase name | week | days to race)
-    2. Date line
-    3. Activity title (huge)
-    4. Detail (multi-line)
-    5. Stats row      (HR | miles | duration)
-    6. Fueling footer (kcal | protein/fat | weight)
+  4x6 home screen widget. RemoteViews-compatible — NO letterSpacing
+  attribute (unsupported in widgets). NO unsupported view types.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/w_root"
@@ -36,8 +31,7 @@
             android:paddingEnd="8dp"
             android:paddingTop="3dp"
             android:paddingBottom="3dp"
-            android:background="@drawable/phase_pill_p1"
-            android:letterSpacing="0.05" />
+            android:background="@drawable/phase_pill_p1" />
 
         <TextView
             android:id="@+id/w_phase_name"
@@ -76,7 +70,7 @@
         android:id="@+id/w_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Today · Wednesday, May 6"
+        android:text="Today"
         android:textSize="13sp"
         android:textColor="#97A3B9"
         android:textStyle="bold"
@@ -94,17 +88,16 @@
         android:textStyle="bold"
         android:textColor="#4EA1FF"
         android:layout_marginBottom="6dp"
-        android:lineSpacingExtra="0dp"
         android:maxLines="2"
         android:ellipsize="end" />
 
-    <!-- DETAIL (multi-line, scrollable space) -->
+    <!-- DETAIL -->
     <TextView
         android:id="@+id/w_detail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Long run, conversational pace. Practice fueling (gel every 30-40 min)."
+        android:text="Long run"
         android:textSize="13sp"
         android:textColor="#E6ECF5"
         android:lineSpacingExtra="2dp"
@@ -133,8 +126,7 @@
                 android:text="HR ZONE"
                 android:textSize="9sp"
                 android:textColor="#6C7A93"
-                android:textStyle="bold"
-                android:letterSpacing="0.06" />
+                android:textStyle="bold" />
             <TextView
                 android:id="@+id/w_stat_hr"
                 android:layout_width="wrap_content"
@@ -162,8 +154,7 @@
                 android:text="MILES"
                 android:textSize="9sp"
                 android:textColor="#6C7A93"
-                android:textStyle="bold"
-                android:letterSpacing="0.06" />
+                android:textStyle="bold" />
             <TextView
                 android:id="@+id/w_stat_miles"
                 android:layout_width="wrap_content"
@@ -191,8 +182,7 @@
                 android:text="DURATION"
                 android:textSize="9sp"
                 android:textColor="#6C7A93"
-                android:textStyle="bold"
-                android:letterSpacing="0.06" />
+                android:textStyle="bold" />
             <TextView
                 android:id="@+id/w_stat_duration"
                 android:layout_width="wrap_content"
@@ -222,8 +212,7 @@
                 android:text="FUEL"
                 android:textSize="9sp"
                 android:textColor="#6C7A93"
-                android:textStyle="bold"
-                android:letterSpacing="0.06" />
+                android:textStyle="bold" />
             <TextView
                 android:id="@+id/w_kcal"
                 android:layout_width="wrap_content"
@@ -236,7 +225,7 @@
                 android:id="@+id/w_protein"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="225g P · 88g F"
+                android:text="225g P"
                 android:textSize="11sp"
                 android:textColor="#97A3B9" />
         </LinearLayout>
@@ -253,7 +242,6 @@
                 android:textSize="9sp"
                 android:textColor="#6C7A93"
                 android:textStyle="bold"
-                android:letterSpacing="0.06"
                 android:gravity="end" />
             <TextView
                 android:id="@+id/w_weight"
