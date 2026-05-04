@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  4x6 home screen widget. RemoteViews-compatible — NO letterSpacing,
+  NO plain <View> (not on RemoteViews allowlist). Use FrameLayout for dividers.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/w_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="14dp"
+    android:background="@drawable/widget_background">
+
+    <!-- HEADER STRIP -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/w_phase_pill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="P1"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFFFF"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:background="@drawable/phase_pill_p1" />
+
+        <TextView
+            android:id="@+id/w_phase_name"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Base"
+            android:textSize="12sp"
+            android:textColor="#97A3B9"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/w_week_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wk 1/27"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="#97A3B9"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/w_countdown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="187 days to race"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:textColor="#FF5563" />
+    </LinearLayout>
+
+    <!-- DATE LINE -->
+    <TextView
+        android:id="@+id/w_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Today"
+        android:textSize="13sp"
+        android:textColor="#97A3B9"
+        android:textStyle="bold"
+        android:layout_marginBottom="2dp"
+        android:singleLine="true"
+        android:ellipsize="end" />
+
+    <!-- ACTIVITY TITLE (HUGE) -->
+    <TextView
+        android:id="@+id/w_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="6 mi Run"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#4EA1FF"
+        android:layout_marginBottom="6dp"
+        android:maxLines="2"
+        android:ellipsize="end" />
+
+    <!-- DETAIL -->
+    <TextView
+        android:id="@+id/w_detail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="Long run"
+        android:textSize="13sp"
+        android:textColor="#E6ECF5"
+        android:lineSpacingExtra="2dp"
+        android:layout_marginBottom="10dp"
+        android:maxLines="6"
+        android:ellipsize="end" />
+
+    <!-- STATS ROW -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/stats_background"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HR ZONE"
+                android:textSize="9sp"
+                android:textColor="#6C7A93"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/w_stat_hr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Z2"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#E6ECF5" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#2A3654" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MILES"
+                android:textSize="9sp"
+                android:textColor="#6C7A93"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/w_stat_miles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#E6ECF5" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="#2A3654" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DURATION"
+                android:textSize="9sp"
+                android:textColor="#6C7A93"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/w_stat_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="78m"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#E6ECF5" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- FUELING FOOTER -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FUEL"
+                android:textSize="9sp"
+                android:textColor="#6C7A93"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/w_kcal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2,795 kcal"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#4DDCA8" />
+            <TextView
+                android:id="@+id/w_protein"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="225g P"
+                android:textSize="11sp"
+                android:textColor="#97A3B9" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="end">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WEIGHT"
+                android:textSize="9sp"
+                android:textColor="#6C7A93"
+                android:textStyle="bold"
+                android:gravity="end" />
+            <TextView
+                android:id="@+id/w_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="250 lb"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#E6ECF5"
+                android:gravity="end" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
