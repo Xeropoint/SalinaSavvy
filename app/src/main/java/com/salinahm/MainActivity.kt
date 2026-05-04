@@ -1,70 +1,70 @@
 package com.salinahm
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.View
+import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.webkit.WebViewAssetLoader
 
 /**
- * Single-activity wrapper that hosts a WebView pointing at the bundled offline
- * web app under assets/. No network ever; the WebView is configured to refuse
- * any external URL load.
+ * Hosts a WebView pointing at the bundled offline web app under assets/.
+ * Uses WebViewAssetLoader so ES modules load (file:// blocks them).
+ * Zero network: only same-origin assets are served.
  */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var webView: WebView
+    private lateinit var assetLoader: WebViewAssetLoader
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Switch from splash theme back to the regular theme before drawing UI
         setTheme(R.style.Theme_SalinaHM)
         WindowCompat.setDecorFitsSystemWindows(window, true)
         setContentView(R.layout.activity_main)
 
+        // AssetLoader serves /assets/* under https://appassets.androidplatform.net/
+        assetLoader = WebViewAssetLoader.Builder()
+            .addPathHandler("/assets/", WebViewAssetLoader.AssetsPathHandler(this))
+            .build()
+
         webView = findViewById(R.id.web_view)
         webView.settings.apply {
             javaScriptEnabled = true
-            allowFileAccess = false        // assets/ access doesn't require this
+            domStorageEnabled = true
+            allowFileAccess = false
             allowContentAccess = false
-            domStorageEnabled = true        // for any localStorage if used
             mediaPlaybackRequiresUserGesture = true
             cacheMode = WebSettings.LOAD_DEFAULT
-            // Keep zoom controls off; the page is responsive
             setSupportZoom(false)
             builtInZoomControls = false
             displayZoomControls = false
         }
         webView.setBackgroundColor(0xFF0B1320.toInt())
-        webView.webViewClient = OfflineOnlyWebViewClient()
-        // Load the bundled offline app
-        webView.loadUrl("file:///android_asset/index.html")
+        webView.webViewClient = object : WebViewClient() {
+            override fun shouldInterceptRequest(
+                view: WebView, request: WebResourceRequest
+            ): WebResourceResponse? {
+                return assetLoader.shouldInterceptRequest(request.url)
+            }
+            override fun shouldOverrideUrlLoading(
+                view: WebView, request: WebResourceRequest
+            ): Boolean {
+                val host = request.url.host
+                return host != "appassets.androidplatform.net"
+            }
+        }
+        webView.loadUrl("https://appassets.androidplatform.net/assets/index.html")
 
-        // Update the widget when the app is opened (so it reflects today's date)
         WidgetUpdater.requestRefresh(this)
     }
 
     override fun onBackPressed() {
         if (webView.canGoBack()) webView.goBack() else super.onBackPressed()
-    }
-
-    /**
-     * Refuse to load any URL outside the bundled assets — guarantees zero network
-     * and prevents the WebView from being used as a backdoor.
-     */
-    private class OfflineOnlyWebViewClient : WebViewClient() {
-        override fun shouldOverrideUrlLoading(
-            view: WebView, request: android.webkit.WebResourceRequest
-        ): Boolean {
-            val url = request.url.toString()
-            // Allow only file:///android_asset/ paths
-            return !url.startsWith("file:///android_asset/")
-        }
     }
 }
